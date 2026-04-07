@@ -13,7 +13,9 @@ Proper role-based access control (user vs beautician)
 # # Installation
 Clone the repository:
 git clone https://github.com/yourusername/beautician-booking.git
+
 cd beautician-booking
+
 Create a virtual environment and activate it:
 python -m venv venv
 source venv/bin/activate   # Linux / macOS
@@ -21,7 +23,8 @@ venv\Scripts\activate      # Windows
 
 # # Install dependencies:
 pip install -r requirements.txt
-Run the application:
+
+# # Run the application:
 uvicorn main:app --reload
 
 # #  The API will be available at http://127.0.0.1:8000/.
