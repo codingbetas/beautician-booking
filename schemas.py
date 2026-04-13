@@ -6,15 +6,6 @@ class UserCreate(BaseModel):
     role: str = "user"
     location: str
 
-# schemas.py
-from pydantic import BaseModel
-
-class UserCreate(BaseModel):
-    email: str
-    password: str
-    role: str = "user"
-    location: str
-
 class UserLogin(BaseModel):
     email: str
     password: str
@@ -25,8 +16,7 @@ class UserOut(BaseModel):
     location: str
     role: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BeauticianCreate(BaseModel):
