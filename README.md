@@ -35,9 +35,11 @@ Authentication
 Method	Endpoint	Body / Params	Description
 POST	/signup	JSON { "email": "...", "password": "...", "role": "...", "location": "..." }	Create a new user
 POST	/login	Form URL Encoded { username, password }	Get JWT access token
+
 Beautician Management
 Method	Endpoint	Body	Auth	Description
 POST	/beautician	JSON { "name": "Alice", "location": "City B" }	Bearer token	Create a beautician (beautician role only)
+
 Booking Workflow
 Method	Endpoint	Body / Params	Auth	Description
 POST	/booking	None	Bearer token	Create a booking (assign available beautician)
@@ -45,7 +47,7 @@ PUT	/booking/{id}/accept	None	Bearer token	Accept a booking (beautician only)
 PUT	/booking/{id}/status	Query param status=Completed	Bearer token	Update booking status (user or beautician)
 ```
 ```
-# Note on booking status transitions:
+#Note on booking status transitions:
 
 Requested -> Accepted / Cancelled
 Accepted -> In Progress / Cancelled
@@ -94,7 +96,7 @@ Admin view completed bookings:
 GET /admin/bookings?status=Completed
 ```
 
-# # Dependencies
+## Dependencies
 FastAPI
 SQLAlchemy
 Uvicorn
