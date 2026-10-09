@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from app.database import Base, engine, get_db
+from app.database import get_db
 from app import models, schemas, crud
 from app.auth import (
     create_token,
@@ -42,14 +42,12 @@ logger = logging.getLogger("atoma.api")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Create tables on startup. In production, this would be
-    handled by Alembic migrations instead.
+    Application lifespan. Schema is managed by Alembic migrations
+    (run `alembic upgrade head` before starting the app).
     """
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables ensured.")
+    logger.info("Application starting.")
     yield
-    logger.info("Shutting down.")
-
+    logger.info("Application shutting down.")
 
 # --------------------------------------------------
 # APP
