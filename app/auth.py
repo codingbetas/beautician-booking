@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app import models
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 load_dotenv()
 
@@ -32,7 +32,7 @@ def verify_password(plain: str, hashed: str):
 # JWT helpers
 def create_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(hours=ACCESS_TOKEN_EXPIRE_HOURS)
+    expire = datetime.now(timezone.utc) + timedelta(hours=ACCESS_TOKEN_EXPIRE_HOURS)
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
